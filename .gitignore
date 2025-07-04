@@ -63,3 +63,4 @@ alembic/versions/__pycache__/
 
 # Project specific
 employee_directory.db
+coverage_reports/

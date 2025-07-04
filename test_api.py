@@ -7,7 +7,7 @@ import requests
 from typing import Dict, Any, Optional
 
 # Configuration
-BASE_URL = "http://localhost:8000"
+BASE_URL = "http://localhost:8008"
 SEARCH_ENDPOINT = f"{BASE_URL}/api/v1/employees/search"
 
 # Default API token

@@ -1,18 +1,33 @@
+## Cài đặt
 
-### 1. Tạo môi trường ảo
+### Phương pháp 1: Sử dụng Docker (Khuyến nghị)
+
+```bash
+# Build và khởi động container
+docker-compose up -d --build
+
+# Kiểm tra logs
+docker-compose logs -f
+```
+
+API sẽ chạy tại http://localhost:8000
+
+### Phương pháp 2: Cài đặt thủ công
+
+#### 1. Tạo môi trường ảo
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate  # Trên Windows: .venv\Scripts\activate
 ```
 
-### 2. Cài đặt thư viện
+#### 2. Cài đặt thư viện
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Tạo file môi trường
+#### 3. Tạo file môi trường
 
 Copy file `.env.example` thành `.env`:
 
@@ -20,27 +35,34 @@ Copy file `.env.example` thành `.env`:
 cp .env.example .env
 ```
 
-### 4. Tạo bảng cho database
+#### 4. Tạo bảng cho database
 
 ```bash
 python create_tables.py
 ```
 
-### 5. Tạo dữ liệu mẫu
+#### 5. Tạo dữ liệu mẫu
 
 ```bash
 python -m app.db.init_script
 ```
 
-### 6. Start app
+#### 6. Start app
 
 ```bash
 uvicorn app.main:app --reload
 ```
-### 7. Kiểm tra API
+
+#### 7. Kiểm tra API
 
 ```bash
 python test_api.py
+```
+
+#### 8. Code coverage and pytest
+
+```bash
+python run_tests.py
 ```
 
 ## Api docs
@@ -128,3 +150,19 @@ Rate limit được cấu hình thông qua các biến môi trường:
 
 - `RATE_LIMIT`: Số lượng yêu cầu tối đa được phép trong RATE_LIMIT_WINDOW_SIZE (mặc định: 100)
 - `RATE_LIMIT_WINDOW_SIZE`: Default: 60s
+
+## Kiểm thử
+
+### Chạy test với pytest
+
+```bash
+pytest
+```
+
+### Chạy test với coverage
+
+```bash
+python run_tests.py
+```
+
+Báo cáo coverage sẽ được tạo trong thư mục `coverage_reports/html`.
